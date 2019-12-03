@@ -94,11 +94,11 @@ void Dictionary::inserting(string word, vector<string>& mas)
                 if(i == k) curr += j;
                 if(k < word.length())
                     curr += word[k];
-                if(!find(curr, mas) && this->search(curr))
-                {
-                    mas.resize(mas.size() + 1);
-                    mas[mas.size() - 1] = curr;
-                }
+            }
+            if(!find(curr, mas) && this->search(curr))
+            {
+                mas.resize(mas.size() + 1);
+                mas[mas.size() - 1] = curr;
             }
         }
     }
@@ -110,9 +110,9 @@ void Dictionary::tryCorrect(string word)
 
     vector<string> mas;
 
-    //transposing(word, mas);
-    //removal(word, mas);
-    //replacement(word, mas);
+    transposing(word, mas);
+    removal(word, mas);
+    replacement(word, mas);
     inserting(word, mas);
 
     if(mas.size() == 0)
