@@ -62,9 +62,20 @@ void checkSpelling(ifstream& in, Dictionary& dict) {
 		ss << line;
 		
 		string word;
-		while (ss >> word) 
+        while (ss >> word)
         {
-            // TODO: Complete the spell check of each word
+            if(tolower(word[word.length() - 1]) < 'a' || tolower(word[word.length() - 1]) > 'z')
+                word.resize(word.length() - 1);
+
+            for (int i = 0; i < word.length(); ++i)
+                word[i] = tolower(word[i]);
+
+		    if(!dict.search(word))
+		    {
+		        cout << "word \"" << word << "\" misspelled in line " << line_number << endl;
+		        dict.tryCorrect(word);
+		        cout << endl;
+		    }
 		}
 	}
 }
